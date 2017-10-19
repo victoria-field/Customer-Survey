@@ -15,6 +15,7 @@ const app = express();
 
 app.use(
   cookieSession({
+    // maxAge allows the cookie to last for 30 days
       maxAge: 30 * 24 * 60 * 60 * 1000,
       keys: [keys.cookieKey]
   })
@@ -22,7 +23,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./routes/authRoutes')(app);
+require('./routes/authroutes')(app);
 
 
 const PORT = process.env.PORT || 5000;

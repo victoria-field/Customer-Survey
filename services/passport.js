@@ -14,7 +14,7 @@ passport.serializeUser((user, done) =>{
 // id from cookie to usermodel
 passport.deserializeUser((id, done)=>{
 
-  User.findByID(id).then(user =>{
+  User.find("_id").then(user =>{
       done(null, user);
     });
   });
@@ -23,7 +23,8 @@ passport.deserializeUser((id, done)=>{
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
-    callbackURL: '/auth/google/callback'
+    callbackURL: '/auth/google/callback',
+    proxy: true
   },
     (accessToken, refreshToken, profile, done) =>{
 
